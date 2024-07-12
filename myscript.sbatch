@@ -17,7 +17,7 @@ PROJECTDIR="/home/rcm8412/DOLPHYN"
 
 julia --project=$PROJECTDIR -e "
     using Pkg;
-    Pkg.activate("$PROJECTDIR");
+    Pkg.add("Dolphyn")
     Pkg.instantiate();
     cd("/home/rcm8412/DOLPHYN/Example_Systems/SmallNewEngland/OneZone");
     include("Run.jl");
