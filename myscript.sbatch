@@ -7,7 +7,7 @@
 #SBATCH --mem=4GB
 #SBATCH --job-name=Dolphyn_SmallNewEngland
 #SBATCH --mail-type=END
-#SBATCH --mail-user=your.email@example.com
+#SBATCH --mail-user=ruthvikmukkamala@nyu.edu
 #SBATCH --output=slurm_%j.out
 
 module purge
