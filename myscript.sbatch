@@ -11,21 +11,16 @@
 #SBATCH --output=slurm_%j.out
 
 module purge
-module load julia/1.6.1
+module load julia/1.6.1  # Adjust version as needed
 
 PROJECTDIR="/home/rcm8412/DOLPHYN"
 
-julia --project=$PROJECTDIR -e "
+julia --project=$PROJECTDIR -e '
     using Pkg;
-    Pkg.add("Gurobi")
-    Pkg.build("Gurobi")
-    Pkg.add("Dolphyn")
-
+    Pkg.add("Gurobi");
+    Pkg.build("Gurobi");
+    Pkg.add("Dolphyn");
     Pkg.instantiate();
     cd("/home/rcm8412/DOLPHYN/Example_Systems/SmallNewEngland/OneZone");
     include("Run.jl");
-"
-
-
-
-
+'
