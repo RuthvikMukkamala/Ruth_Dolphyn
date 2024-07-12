@@ -1,5 +1,5 @@
 function default_settings()
-    Dict{String,Any}(
+    Dict{Any,Any}(
         "PrintModel" => 0,
         "OverwriteResults" => 0,
         "NetworkExpansion" => 0,
@@ -38,7 +38,7 @@ function configure_settings(settings_path::String)
     return settings
 end
 
-function validate_settings!(settings::Dict{String,Any})
+function validate_settings!(settings::Dict{Any,Any})
     # Check for any settings combinations that are not allowed.
     # If we find any then make a response and issue a note to the user.
 
