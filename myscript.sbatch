@@ -19,10 +19,10 @@ mkdir -p $RUNDIR
 
 cd $RUNDIR
 
-julia --project=$PROJECTDIR -e '
+julia --project=$PROJECTDIR -e "
     using Pkg;
     Pkg.activate("$PROJECTDIR");
     Pkg.instantiate();
-    cd(joinpath("$PROJECTDIR", "Example_Systems", "SmallNewEngland", "OneZone"));
+    cd("Example_Systems/SmallNewEngland/OneZone");
     include("Run.jl");
-'
+"
