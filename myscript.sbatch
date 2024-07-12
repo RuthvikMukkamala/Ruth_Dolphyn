@@ -11,7 +11,7 @@
 #SBATCH --output=slurm_%j.out
 
 module purge
-module load julia  # Adjust version as needed
+
 
 PROJECTDIR="/home/rcm8412/DOLPHYN"
 RUNDIR="$PROJECTDIR/runs/run-${SLURM_JOB_ID/.*}"
