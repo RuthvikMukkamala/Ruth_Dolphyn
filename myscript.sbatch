@@ -13,7 +13,7 @@
 module purge
 module load julia/1.8.5  # Adjust version as needed
 
-PROJECTDIR="/Users/ruthvikmukkamala/PycharmProjects/Dolphyn.jl"
+PROJECTDIR="/home/rcm8412/DOLPHYN"
 RUNDIR="$PROJECTDIR/runs/run-${SLURM_JOB_ID/.*}"
 mkdir -p $RUNDIR
 
