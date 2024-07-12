@@ -14,15 +14,27 @@ module purge
 module load julia/1.6.1
 
 PROJECTDIR="/home/rcm8412/DOLPHYN"
-RUNDIR="$PROJECTDIR/runs/run-${SLURM_JOB_ID/.*}"
-mkdir -p $RUNDIR
-
-cd $RUNDIR
 
 julia --project=$PROJECTDIR -e "
     using Pkg;
     Pkg.activate("$PROJECTDIR");
     Pkg.instantiate();
-    cd("Example_Systems/SmallNewEngland/OneZone");
+    cd("/home/rcm8412/DOLPHYN/Example_Systems/SmallNewEngland/OneZone");
     include("Run.jl");
 "
+
+
+
+
+#RUNDIR="$PROJECTDIR/runs/run-${SLURM_JOB_ID/.*}"
+#mkdir -p $RUNDIR
+#
+#cd $RUNDIR
+#
+#julia --project=$PROJECTDIR -e "
+#    using Pkg;
+#    Pkg.activate("$PROJECTDIR");
+#    Pkg.instantiate();
+#    cd("/home/rcm8412/DOLPHYN/Example_Systems/SmallNewEngland/OneZone");
+#    include("Run.jl");
+#"
