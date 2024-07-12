@@ -21,8 +21,8 @@ cd $RUNDIR
 
 julia --project=$PROJECTDIR -e '
     using Pkg;
-    Pkg.activate(".");
+    Pkg.activate("$PROJECTDIR");
     Pkg.instantiate();
-    cd("Example_Systems/SmallNewEngland/OneZone");
+    cd(joinpath("$PROJECTDIR", "Example_Systems", "SmallNewEngland", "OneZone"));
     include("Run.jl");
 '
