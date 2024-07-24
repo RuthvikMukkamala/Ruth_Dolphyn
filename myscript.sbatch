@@ -13,14 +13,14 @@
 module purge
 module load julia/1.6.1  # Adjust version as needed
 
-PROJECTDIR="/home/rcm8412/DOLPHYN"
+
+PROJECTDIR="/Users/ruthvikmukkamala/PycharmProjects/Dolphyn.jl"
 
 julia --project=$PROJECTDIR -e '
     using Pkg;
     Pkg.add("Gurobi");
     Pkg.build("Gurobi");
-    Pkg.add("Dolphyn");
 
-    cd("/home/rcm8412/DOLPHYN/Example_Systems/SmallNewEngland/OneZone");
+    cd("/Users/ruthvikmukkamala/PycharmProjects/Dolphyn.jl/Test_1_Rep_60_RPS_Hourly/1_Rep_VRE_Scenarios_Hourly_C0");
     include("Run.jl");
 '
