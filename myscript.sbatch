@@ -34,8 +34,7 @@ chmod +x /tmp/run_julia.sh
 
 # Execute the script inside Singularity
 singularity exec \
-  --bind /home/rcm8412/julia-1.10.0/compiled:/ext3/pkgs/compiled \
-  --bind /home/rcm8412/julia-1.10.0/logs:/ext3/pkgs/logs \
-  --overlay /home/rcm8412/julia-1.10.0/julia-1.10.0.ext3:rw \
+  --bind /home/rcm8412/julia-1.10.4/compiled:/ext3/pkgs/compiled \
+  --bind /home/rcm8412/julia-1.10.4/logs:/ext3/pkgs/logs \
+  --overlay /home/rcm8412/julia-1.10.4/julia-1.10.4.ext3:rw \
   /scratch/work/public/singularity/ubuntu-20.04.4.sif \
-  /tmp/run_julia.sh
