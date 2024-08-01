@@ -23,7 +23,11 @@ singularity exec \
   /scratch/work/public/singularity/ubuntu-20.04.4.sif \
   /bin/bash -c "
   source $EXT3_PATH/env.sh
+
   julia --project=$PROJECTDIR -e '
+      using Pkg
+      Pkg.add(\"Gurobi\")
+
       cd(\"/home/rcm8412/Dolphyn.jl/Test_1_Rep_60_RPS_Hourly/1_Rep_VRE_Scenarios_Hourly_C1\");
       include(\"Run.jl\");
   '
