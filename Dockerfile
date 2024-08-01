@@ -1,5 +1,5 @@
 # Use the official Julia image as a base
-FROM julia:1.6.1
+FROM julia:1.10.4
 
 # Set the working directory
 WORKDIR /app
@@ -12,7 +12,6 @@ RUN julia -e 'using Pkg; Pkg.add("Dolphyn"); Pkg.add("HiGHS"); Pkg.add("JuMP"); 
 
 # Install Gurobi solver (optional, if using Gurobi)
 
-ENV GRB_LICENSE_FILE /home/rcm8412/gurobi.lic
 RUN julia -e 'using Pkg; Pkg.build("Gurobi")'
 
 # Command to run the model

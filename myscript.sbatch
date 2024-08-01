@@ -5,22 +5,37 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --time=5:00:00
 #SBATCH --mem=4GB
-#SBATCH --job-name=Dolphyn_SmallNewEngland
+#SBATCH --job-name=TEST_ANNUAL_RPS
 #SBATCH --mail-type=END
 #SBATCH --mail-user=ruthvikmukkamala@nyu.edu
 #SBATCH --output=slurm_%j.out
 
-module purge
-module load julia/1.6.1  # Adjust version as needed
+# Environment setup
+PROJECTDIR="/home/rcm8412/Dolphyn.jl"
+EXT3_PATH="/ext3"
+JULIA_PATH="$EXT3_PATH/julia-1.10.4"
 
+# Create a script to run inside the container
+cat << 'EOF' > /tmp/run_julia.sh
+#!/bin/bash
 
-PROJECTDIR="/Users/ruthvikmukkamala/PycharmProjects/Dolphyn.jl"
+# Source environment variables
+source $EXT3_PATH/env.sh
 
+# Run the Julia script
 julia --project=$PROJECTDIR -e '
-    using Pkg;
-    Pkg.add("Gurobi");
-    Pkg.build("Gurobi");
-
-    cd("/Users/ruthvikmukkamala/PycharmProjects/Dolphyn.jl/Test_1_Rep_60_RPS_Hourly/1_Rep_VRE_Scenarios_Hourly_C0");
+    cd("/home/rcm8412/Dolphyn.jl/Test_1_Rep_60_RPS_Hourly/1_Rep_VRE_Scenarios_Hourly_C1");
     include("Run.jl");
 '
+EOF
+
+# Make the script executable
+chmod +x /tmp/run_julia.sh
+
+# Execute the script inside Singularity
+singularity exec \
+  --bind /home/rcm8412/julia-1.10.0/compiled:/ext3/pkgs/compiled \
+  --bind /home/rcm8412/julia-1.10.0/logs:/ext3/pkgs/logs \
+  --overlay /home/rcm8412/julia-1.10.0/julia-1.10.0.ext3:rw \
+  /scratch/work/public/singularity/ubuntu-20.04.4.sif \
+  /tmp/run_julia.sh
